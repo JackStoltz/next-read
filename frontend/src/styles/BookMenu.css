@@ -1,0 +1,13 @@
+.background {
+    background-image: url('../images/blue.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 2000px;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    z-index: 1;
+  } 
