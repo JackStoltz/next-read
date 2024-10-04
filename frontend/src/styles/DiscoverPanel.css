@@ -1,0 +1,83 @@
+.Discover{
+  z-index: 2;
+}
+
+.Discover-header {
+  font-size: 20px;
+  color: #031540;
+  text-decoration: none;
+  font-weight: 700;
+  padding: 10px 20px;
+  border-radius: 50px;
+  text-align: center;
+  margin-top: 130px;
+}
+
+.search-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 450px;
+}
+
+.search-input {
+  width: 20%;
+  padding: 10px;
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  font-size: 18px;
+  font-weight: 500;
+  color: #031540;
+  margin-right: 10px;
+}
+
+.search-button {
+  background-color: #031540;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.keyword-input {
+  margin-top: 20px;
+  width: 20%;
+  padding: 10px;
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  font-size: 18px;
+  font-weight: 500;
+  color: #031540;
+  display: block;
+  width: 10%;
+  padding: 8px;
+  font-size: 13px;
+  margin-left: 720px;
+}
+
+.bookRec {
+  width: 200px;
+  height: 300px;
+  margin-top: 150px;
+  position: absolute;
+  top: 100px; /* Adjust as needed */
+  left: -100px; /* Start off-screen */
+  animation: moveImage 10s linear infinite;
+}
+
+@keyframes moveImage {
+  0% {
+      left: -200px;
+      opacity: 0;
+  }
+  50% {
+      opacity: 1;
+  }
+  100% {
+      left: 100%;
+      opacity: 0;
+      
+  }
+} 

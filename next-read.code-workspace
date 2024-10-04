@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"name": "next-read",
+			"path": "."
+		},
+		{
+			"name": "frontend",
+			"path": "../NextRead/frontend"
+		}
+	],
+	"settings": {}
+}
