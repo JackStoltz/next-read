@@ -1,10 +1,9 @@
-// src/BookMenu.tsx
-
 import './styles/BookMenu.css';
-import './styles/Book.css'; // Ensure that class names in Book.css don't conflict with BookMenu.css
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
 
 interface Book {
   id: string;
@@ -24,6 +23,17 @@ const BookMenu: React.FC = () => {
   const [loading, setLoading] = useState(false); // Loading state
   const [error, setError] = useState<string | null>(null); // Error state
   const location = useLocation();
+  const [selectedBook, setSelectedBook] = useState<string | null>(null);
+  let selected = "book-library-item";
+  const navigate = useNavigate();
+  const [showButton, setShowButton] = useState(false);
+  
+  
+  
+  const handleSelect = (id:string) => {
+    setSelectedBook(prevSelectedBook => (prevSelectedBook === id ? null : id));
+
+  }
 
   // Function to parse query parameters
   const getQueryParams = () => {
@@ -45,12 +55,14 @@ const BookMenu: React.FC = () => {
       }
 
       // Build the query string with quotes for multi-word inputs
-      let query = '';
-      if (title.trim() !== '') query += `intitle:"${title.trim()}"`;
-      if (author.trim() !== '') {
-        if (query !== '') query += '+';
-        query += `inauthor:"${author.trim()}"`;
-      }
+      // Build the query string with quotes for multi-word inputs
+    let query = '';
+    if (title.trim() !== '') query += `intitle:"${title.trim()}"`;
+    if (author.trim() !== '') {
+    if (query !== '') query += '+';
+    query += `inauthor:"${author.trim()}"`;
+}
+
 
       // Debugging: Log the constructed query
       console.log('Constructed Query:', query);
@@ -63,7 +75,7 @@ const BookMenu: React.FC = () => {
           params: {
             q: query,
             maxResults: 10,
-            key: process.env.REACT_APP_GOOGLE_BOOKS_API_KEY, // Securely using the API key from environment variables
+            key: import.meta.env.VITE_REACT_APP_GOOGLE_BOOKS_API_KEY,
           },
         });
 
@@ -88,7 +100,7 @@ const BookMenu: React.FC = () => {
   }, [location.search]);
 
   return (
-    <div className="background">
+    <div className="background-menu">
       <h1>Search Results</h1>
       {loading ? (
         <p>Loading...</p>
@@ -100,17 +112,17 @@ const BookMenu: React.FC = () => {
             books.map((book) => {
               const { volumeInfo } = book;
               return (
-                <div key={book.id} className="book-library-item">
+                <div key={book.id} className={selectedBook === book.id ? "book-library-item-selected" : "book-library-item"} onClick={() => handleSelect(book.id)}>
                   {volumeInfo.imageLinks && volumeInfo.imageLinks.thumbnail && (
-                    <img src={volumeInfo.imageLinks.thumbnail} alt={volumeInfo.title} className='book-library-image' />
+                    <img src={volumeInfo.imageLinks.thumbnail} alt={volumeInfo.title} className={selectedBook ? "book-library-image-selected" : "book-library-image"} />
                   )}
                   <div className="book-library-info">
-                    <h2 className="book-library-book-title">{volumeInfo.title}</h2>
+                    <h2 className="book-library-book-title">
+                        {volumeInfo.title.length > 20 ? `${volumeInfo.title.substring(0, 20)}...` : volumeInfo.title}
+                    </h2>
                     <h3 className="book-library-author">{volumeInfo.authors?.join(', ')}</h3>
-                    <p>{volumeInfo.description || 'No description available.'}</p>
-                    <a href={volumeInfo.infoLink} target="_blank" rel="noopener noreferrer">
-                      More Info
-                    </a>
+                    
+                      
                   </div>
                 </div>
               );
@@ -120,6 +132,7 @@ const BookMenu: React.FC = () => {
           )}
         </div>
       )}
+      <Button variant="primary" onClick={() => navigate('/library')} className={selectedBook != null ? "view-button-select" : "view-button"}>{selectedBook != null ? "Add to library" : "Back to library"}</Button>
     </div>
   );
 };

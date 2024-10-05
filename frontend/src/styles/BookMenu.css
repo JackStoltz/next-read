@@ -1,5 +1,5 @@
-.background {
-    background-image: url('../images/blue.png');
+.background-menu {
+    background-color:lightblue;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -11,3 +11,94 @@
     flex-direction: column;
     z-index: 1;
   } 
+
+  .book-library-item {
+    flex: 0 0 auto;
+    max-width: 200px;
+    max-height: 400px;
+    background-color: #fff;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+    display: inline-block;
+    margin: 15px;
+  }
+  
+  .book-library-item:hover {
+    transform: scale(1.05);
+  }
+  
+  .book-library-image {
+    width: 200px;
+    height: 300px;
+    border-radius: 10px 10px 0 0;
+  }
+
+  .book-library-image-selected {
+    width: 200px;
+    height: 300px;
+    border-radius: 10px 10px 0 0;
+  }
+  
+  .book-library-info {
+    padding: 10px;
+  }
+  
+  .book-library-book-title {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 5px;
+  }
+  
+  .book-library-author {
+    font-size: 14px;
+    color: #777;
+  }
+  
+.book-library-item-selected{
+  flex: 0 0 auto;
+    max-width: 200px;
+    max-height: 400px;
+    background-color: #fff;
+    border-radius: 10px;
+    text-align: center;
+    transition: transform 0.3s ease;
+    display: inline-block;
+    margin: 15px;
+    box-shadow: 0 0 10px 5px green;
+}
+
+.view-button {
+  width:100px;
+  margin: 0 auto;
+  background-color: green;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease;
+
+  }
+
+.view-button:hover {
+  box-shadow: 0 0 10px green;
+}
+
+.view-button-select {
+  width:100px;
+  margin: 0 auto;
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease;
+
+  }
+
+.view-button-select:hover {
+  box-shadow: 0 0 10px green;
+}

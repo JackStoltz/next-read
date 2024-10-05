@@ -11,11 +11,11 @@
 }
 
 .library {
-  background-image: url('../images/blue.png');
+  background-color: lightblue;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  height: 100vh;
+  height: 200vh;
   margin: 0;
   padding: 0;
   display: flex;
